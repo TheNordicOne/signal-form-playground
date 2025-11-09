@@ -1,0 +1,6 @@
+.form-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 2rem;
+}

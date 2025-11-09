@@ -1,0 +1,5 @@
+.validation-errors {
+  display: grid;
+  gap: 0.5rem;
+  color: red;
+}
