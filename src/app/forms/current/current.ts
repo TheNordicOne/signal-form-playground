@@ -39,8 +39,8 @@ export class Current {
     required(path.buildingNumber, {message: 'Please enter the room number'});
     required(path.roomNumber, {message: 'Please enter the room number'});
     required(path.fullName);
-    required(path.category);
-    required(path.description);
+    required(path.details.category);
+    required(path.details.description);
     required(path.email);
 
     minLength(path.buildingNumber, 2, { message: 'Must have at least 2 characters'});
@@ -49,7 +49,7 @@ export class Current {
     validateBuildingExists(path.buildingNumber);
     validateRoomExists(path);
 
-    applyWhenValue(path, (request) => request.urgency === 'high' || request.urgency === 'critical', (request) => {
+    applyWhenValue(path, (request) => request.details.urgency === 'high' || request.details.urgency === 'critical', (request) => {
       required(request.phone, {message: 'For urgent requests, please enter your phone number so we can call you back!'});
     });
   });

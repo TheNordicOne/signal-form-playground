@@ -3,9 +3,11 @@ export interface MaintenanceRequest {
   roomNumber: string;
   fullName: string;
   email: string;
-  category: Category | '';
-  urgency: Urgency | '';
-  description: string;
+  details: {
+    category: Category | '';
+    urgency: Urgency | '';
+    description: string;
+  }
   phone: string;
 }
 
@@ -27,8 +29,10 @@ export const initialMaintenanceRequest: MaintenanceRequest = {
   roomNumber: '',
   fullName: '',
   email: '',
-  category: '',
-  urgency: 'low',
-  description: '',
+  details: {
+    category: '',
+    urgency: 'low',
+    description: '',
+  },
   phone: ''
 }
