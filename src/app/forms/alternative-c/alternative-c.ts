@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maintenance-request';
-import { Field } from '@angular/forms/signals';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrors } from '../validation-errors/validation-errors';
+import { Field } from '@angular/forms/signals';
+import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maintenance-request';
 import {
   applyWhenValue,
   form,
@@ -13,31 +13,25 @@ import {
 } from './wrapper';
 
 @Component({
-  selector: 'app-proposed',
-  imports: [Field, FormsModule, ValidationErrors],
-  templateUrl: './alternative-a.html',
-  host: {
-    class: 'form-wrapper',
-  },
+  selector: 'app-alternative-c',
+  imports: [FormsModule, ReactiveFormsModule, ValidationErrors, Field],
+  templateUrl: './alternative-c.html',
 })
-export class AlternativeA {
+export class AlternativeC {
   request = signal<MaintenanceRequest>({ ...initialMaintenanceRequest });
 
   /*
-    Alternative A
+    Alternative C
 
     ***Pros:**
     - almost fully declarative
       - all validators for a given field are immediately visible
     - fields are not repeated
+    - defining validators for form groups uses the exact shape as the value
     - which field is targeted when using applyWhenValue is clear
-
 
     ***Cons:**
     - longer in terms of lines to write
-    - readability can be hindered
-      - may depend a little on the formatting
-      - also depends on how nested fields can be accessed
     - requires a reserved key to add validators to the whole form
       - reserved keys have potential to collide with one required for business logic
     - applyWhenValue now only targets a single field, which may lead to repetitive boolean checks
@@ -45,15 +39,17 @@ export class AlternativeA {
   */
   requestForm = form(this.request, {
     buildingNumber: [
-      required({ message: 'Please enter the room number' }),
-      minLength(2),
+      required({ message: 'Please enter the building number' }),
+      minLength(2, { message: 'Must have at least 2 characters' }),
       validateBuildingExists(),
     ],
     roomNumber: [required({ message: 'Please enter the room number' }), minLength(2)],
     fullName: [required()],
+    details: {
+      category: [required()],
+      description: [required()],
+    },
     email: [required()],
-    'details.category': [required()],
-    'details.description': [required()],
     phone: [
       applyWhenValue(
         (request) => request.details.urgency === 'high' || request.details.urgency === 'critical',
