@@ -34,7 +34,6 @@ export class AlternativeA {
 
 
     ***Cons:**
-    - longer in terms of lines to write
     - readability can be hindered
       - may depend a little on the formatting
       - also depends on how nested fields can be accessed

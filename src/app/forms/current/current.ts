@@ -20,7 +20,7 @@ export class Current {
     21.0.0-next.0
 
     ***Pros:**
-    - short
+    - simple
     - flexible
       e.g.: team can decide if to group validators by field (path.roomNumber) or by kind (required/minLength; like in this example)
 

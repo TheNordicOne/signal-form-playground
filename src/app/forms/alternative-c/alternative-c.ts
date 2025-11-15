@@ -31,11 +31,12 @@ export class AlternativeC {
     - which field is targeted when using applyWhenValue is clear
 
     ***Cons:**
-    - longer in terms of lines to write
     - requires a reserved key to add validators to the whole form
       - reserved keys have potential to collide with one required for business logic
     - applyWhenValue now only targets a single field, which may lead to repetitive boolean checks
     - cross-field validation requires setting it on the root level, which breaks declarativity
+      - depending on the actual implementation this may not be required
+      - the implementation of a function could always also get the full form context, in addition to the target
   */
   requestForm = form(this.request, {
     buildingNumber: [
