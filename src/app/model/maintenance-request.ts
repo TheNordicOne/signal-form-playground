@@ -7,22 +7,13 @@ export interface MaintenanceRequest {
     category: Category | '';
     urgency: Urgency | '';
     description: string;
-  }
+  };
   phone: string;
 }
 
-export type Category = 'hvac'
-  | 'electrical'
-  | 'plumbing'
-  | 'cleaning'
-  | 'security'
-  | 'other';
+export type Category = 'hvac' | 'electrical' | 'plumbing' | 'cleaning' | 'security' | 'other';
 
-export type Urgency = 'low'
-  | 'medium'
-  | 'high'
-  | 'critical'
-
+export type Urgency = 'low' | 'medium' | 'high' | 'critical';
 
 export const initialMaintenanceRequest: MaintenanceRequest = {
   buildingNumber: '',
@@ -34,5 +25,5 @@ export const initialMaintenanceRequest: MaintenanceRequest = {
     urgency: 'low',
     description: '',
   },
-  phone: ''
-}
+  phone: '',
+};
