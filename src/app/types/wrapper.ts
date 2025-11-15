@@ -1,4 +1,4 @@
-import { LogicFn, OneOrMany, PathKind, ValidationError } from '@angular/forms/signals';
+import { FieldPath, LogicFn, OneOrMany, PathKind, ValidationError } from '@angular/forms/signals';
 
 // Copied from Angular source code
 
@@ -24,3 +24,14 @@ export type FormKey<T> = T extends object
       [K in keyof T & string]: K | (T[K] extends object ? `${K}.${FormKey<T[K]>}` : K);
     }[keyof T & string]
   : never;
+
+export // Helper type to get the FieldPath type for a given key
+type FieldPathForKey<TValue, K extends string, TPathKind extends PathKind> = K extends keyof TValue
+  ? FieldPath<TValue[K], TPathKind>
+  : K extends `${infer First}.${infer Rest}`
+    ? First extends keyof TValue
+      ? FieldPathForKey<TValue[First], Rest, TPathKind>
+      : never
+    : K extends 'root'
+      ? FieldPath<TValue, TPathKind>
+      : never;

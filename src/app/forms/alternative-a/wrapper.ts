@@ -45,6 +45,4 @@ export function applyWhenValue(predicate: (value: any) => boolean, validatorFns:
   return 'applyWhenValue';
 }
 
-export type SignalFormValidators<TValue> = Partial<
-  Record<FormKey<TValue> | 'root', (unknown | TValue)[]>
->;
+type SignalFormValidators<TValue> = Partial<Record<FormKey<TValue> | 'root', (unknown | TValue)[]>>;
