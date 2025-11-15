@@ -21,20 +21,6 @@ import {applyWhenValue, form, minLength, required, validateBuildingExists, valid
 export class AlternativeA {
   request = signal<MaintenanceRequest>({...initialMaintenanceRequest});
 
-  // Business Logic
-  // buildingNumber is required
-  // buildingNumber must have at least 2 characters
-  // buildingNumber is checked against database for existence
-  // roomNumber is required
-  // roomNumber must have at least 2 characters
-  // roomNumber is checked against database for existence in combination with the building
-  // Full Name is required
-  // E-Mail is required
-  // Category is required
-  // Phone is required if Urgency is high or critical
-  // Description is required
-
-
   requestForm = form(this.request, {
     buildingNumber: [
       required({message: 'Please enter the room number'}),
