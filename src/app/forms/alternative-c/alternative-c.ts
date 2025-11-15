@@ -23,20 +23,21 @@ export class AlternativeC {
   /*
     Alternative C
 
+    This alternative makes the assumption, that a validator function always has access to
+    the whole form context, to be able to do cross-field validation
+
     ***Pros:**
-    - almost fully declarative
+    - fully declarative
       - all validators for a given field are immediately visible
     - fields are not repeated
     - defining validators for form groups uses the exact shape as the value
     - which field is targeted when using applyWhenValue is clear
+    - doing cross-field validation does not require special functions
 
     ***Cons:**
     - requires a reserved key to add validators to the whole form
       - reserved keys have potential to collide with one required for business logic
     - applyWhenValue now only targets a single field, which may lead to repetitive boolean checks
-    - cross-field validation requires setting it on the root level, which breaks declarativity
-      - depending on the actual implementation this may not be required
-      - the implementation of a function could always also get the full form context, in addition to the target
   */
   requestForm = form(this.request, {
     buildingNumber: [
@@ -44,7 +45,11 @@ export class AlternativeC {
       minLength(2, { message: 'Must have at least 2 characters' }),
       validateBuildingExists(),
     ],
-    roomNumber: [required({ message: 'Please enter the room number' }), minLength(2)],
+    roomNumber: [
+      required({ message: 'Please enter the room number' }),
+      minLength(2),
+      validateRoomExists(),
+    ],
     fullName: [required()],
     details: {
       category: [required()],
@@ -61,7 +66,7 @@ export class AlternativeC {
         ],
       ),
     ],
-    root: [validateRoomExists()],
+    root: [],
   });
 
   onSubmit(event: Event) {
