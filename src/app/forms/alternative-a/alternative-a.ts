@@ -24,24 +24,24 @@ export class AlternativeA {
   request = signal<MaintenanceRequest>({ ...initialMaintenanceRequest });
 
   /*
-  Alternative A
+    Alternative A
 
-  ***Pros:**
-  - fully declarative
-    - all validators for a given field are immediately visible
-  - fields are not repeated
-  - which field is targeted when using applyWhenValue is clear
+    ***Pros:**
+    - fully declarative
+      - all validators for a given field are immediately visible
+    - fields are not repeated
+    - which field is targeted when using applyWhenValue is clear
 
 
-  ***Cons:**
-  - longer in terms of lines to write
-  - readability can be hindered
-    - may depend a little on the formatting
-    - also depends on how nested fields can be accessed
-  - requires a reserved key to add validators to the whole form
-    - reserved keys have potential to collide with one required for business logic
-  - applyWhenValue now only targets a single field, which may lead to repetitive boolean checks
-*/
+    ***Cons:**
+    - longer in terms of lines to write
+    - readability can be hindered
+      - may depend a little on the formatting
+      - also depends on how nested fields can be accessed
+    - requires a reserved key to add validators to the whole form
+      - reserved keys have potential to collide with one required for business logic
+    - applyWhenValue now only targets a single field, which may lead to repetitive boolean checks
+  */
   requestForm = form(this.request, {
     buildingNumber: [
       required({ message: 'Please enter the room number' }),
