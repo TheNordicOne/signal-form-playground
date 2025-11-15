@@ -16,7 +16,6 @@ import {
   selector: 'app-proposed',
   imports: [Field, FormsModule, ValidationErrors],
   templateUrl: './alternative-a.html',
-  styleUrl: './alternative-a.css',
   host: {
     class: 'form-wrapper',
   },

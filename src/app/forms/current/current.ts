@@ -9,7 +9,6 @@ import { ValidationErrors } from '../validation-errors/validation-errors';
   selector: 'app-current',
   imports: [Field, FormsModule, ValidationErrors],
   templateUrl: './current.html',
-  styleUrl: './current.css',
   host: {
     class: 'form-wrapper',
   },
