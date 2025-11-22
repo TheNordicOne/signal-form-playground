@@ -35,3 +35,17 @@ type FieldPathForKey<TValue, K extends string, TPathKind extends PathKind> = K e
     : K extends 'root'
       ? FieldPath<TValue, TPathKind>
       : never;
+
+export type SignalFormValidators<TValue, TPathKind extends PathKind = PathKind.Root> = {
+  [K in keyof TValue | 'root']?: K extends keyof TValue
+    ? TValue[K] extends object
+      ? ValidatorFn<TValue, K & string, TPathKind>[] | SignalFormValidators<TValue[K], TPathKind>
+      : ValidatorFn<TValue, K & string, TPathKind>[]
+    : K extends 'root'
+      ? ValidatorFn<TValue, 'root', TPathKind>[]
+      : never;
+};
+
+export type ValidatorFn<TValue, K extends string, TPathKind extends PathKind> = (
+  field: FieldPathForKey<TValue, K, TPathKind>,
+) => unknown;
