@@ -18,34 +18,6 @@ export class DreamSyntax {
   /*
     Dream Syntax
 
-    This is my personal idea of a dream syntax. Changes here also contain renaming of some functions.
-    This may change overtime when new ideas arise.
-
-    What I personally really want is a syntax that is easy to read and easy to maintain.
-
-    Criteria I'm looking for are:
-    - Is it fully declarative?
-    - Does it make semantic sense when reading?
-    - Are functions named in an easy-to-understand way?
-      - This includes naming that align with how devs think about logic
-
-
-    I would suggest these renames:
-    - applyWhen => when
-      - dropping "apply" as it is implied
-      - reads as: validate when isUrgent/isDelayed/isTomorrow
-      - same goes for other applyWhen alternatives
-
-    - validateTree => validateForm
-      - tree may be the correct term on a technical level
-      - however a dev is writing a form, so one would also think in terms of a form
-      - having to remember that a form is represented as a tree is additional mental overhead that we can avoid
-      - reads as: validate against the whole form
-
-    Of course, there is always the case where we may need to have a more technical name to better differentiate different implementations.
-    For example a developer would still need to learn the difference between when and whenValue.
-    Ideally the more common use-case has the simpler name.
-
     ***Pros:**
     - fully declarative
       - all validators for a given field are immediately visible
@@ -56,6 +28,7 @@ export class DreamSyntax {
 
     ***Cons:**
     - whenValue now only targets a single field (but condition reuse mitigates repetition)
+    - implementation is probably not easy or has high complexity
   */
   requestForm = form(this.request, (path) => {
     // Note: isUrgent is a custom function defined outside of this component
