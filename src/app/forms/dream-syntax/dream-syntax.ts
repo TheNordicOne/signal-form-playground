@@ -50,12 +50,12 @@ export class DreamSyntax {
     - fully declarative
       - all validators for a given field are immediately visible
     - fields are not repeated
-    - which field is targeted when using applyWhenValue is clear
+    - which field is targeted when using whenValue is clear
     - doing cross-field validation does not require special functions
     - conditions can be defined once and reused across multiple fields
 
     ***Cons:**
-    - applyWhenValue now only targets a single field (but condition reuse mitigates repetition)
+    - whenValue now only targets a single field (but condition reuse mitigates repetition)
   */
   requestForm = form(this.request, (path) => {
     // Note: isUrgent is a custom function defined outside of this component
