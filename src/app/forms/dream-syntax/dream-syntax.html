@@ -1,0 +1,92 @@
+<h2>Alternative B</h2>
+<form (ngSubmit)="onSubmit($event)">
+  <div class="inline-input">
+    <label for="building-number">Building Number</label>
+    <input
+      type="text"
+      id="building-number"
+      [field]="requestForm1.buildingNumber"
+    />
+    <app-validation-errors [errors]="requestForm1.buildingNumber().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="room-number">Room Number</label>
+    <input
+      type="text"
+      id="room-number"
+      [field]="requestForm1.roomNumber"
+    />
+    <app-validation-errors [errors]="requestForm1.roomNumber().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="full-name">Full Name</label>
+    <input
+      type="text"
+      id="full-name"
+      [field]="requestForm1.fullName"
+    />
+    <app-validation-errors [errors]="requestForm1.fullName().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="email">E-Mail</label>
+    <input
+      type="text"
+      id="email"
+      [field]="requestForm1.email"
+    />
+    <app-validation-errors [errors]="requestForm1.email().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="category">Category</label>
+    <select [field]="requestForm1.details.category">
+      <option value="">Select a category</option>
+      <option value="hvac">Hvac</option>
+      <option value="electrical">Electrical</option>
+      <option value="plumbing">Plumbing</option>
+      <option value="cleaning">Cleaning</option>
+      <option value="security">Security</option>
+      <option value="other">Other</option>
+    </select>
+    <app-validation-errors [errors]="requestForm1.details.category().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="urgency">Urgency</label>
+    <select [field]="requestForm1.details.urgency">
+      <option value="">Select a urgency</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+      <option value="critical">Critical</option>
+    </select>
+    <app-validation-errors [errors]="requestForm1.details.urgency().errors()"/>
+  </div>
+
+
+  <div class="inline-input">
+    <label for="description">Description</label>
+    <input
+      type="text"
+      id="description"
+      [field]="requestForm1.details.description"
+    />
+    <app-validation-errors [errors]="requestForm1.details.description().errors()"/>
+  </div>
+
+  <div class="inline-input">
+    <label for="phone">Phone</label>
+    <input
+      type="text"
+      id="phone"
+      [field]="requestForm1.phone"
+    />
+    <app-validation-errors [errors]="requestForm1.phone().errors()"/>
+  </div>
+
+  <button type="submit">Log to console</button>
+</form>
+
