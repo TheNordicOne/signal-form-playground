@@ -2,14 +2,14 @@ import { Component, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrors } from '../validation-errors/validation-errors';
 import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maintenance-request';
+import { validatePath } from './mock';
 import {
   applyWhenValue,
   minLength,
   required,
   validateBuildingExists,
-  validatePath,
   validateRoomExists,
-} from './wrapper';
+} from '../mock';
 import { Field, form } from '@angular/forms/signals';
 
 @Component({

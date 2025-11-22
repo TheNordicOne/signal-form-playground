@@ -7,7 +7,7 @@ import {
   form as ngForm,
   PathKind,
 } from '@angular/forms/signals';
-import { FieldPathForKey, FormKey } from '../../types/wrapper';
+import { FieldPathForKey, FormKey } from '../../types/mock';
 
 export function form<TValue>(
   model: WritableSignal<TValue>,

@@ -1,7 +1,6 @@
-// Wrapper function to make the usage look as proposed
 import { WritableSignal } from '@angular/core';
-import { FieldPath, FieldTree, form as ngForm, LogicFn, PathKind } from '@angular/forms/signals';
-import { BaseValidatorConfig, FieldPathForKey } from '../../types/wrapper';
+import { FieldPath, FieldTree, form as ngForm, PathKind } from '@angular/forms/signals';
+import { FieldPathForKey } from '../../types/mock';
 
 export function form<TValue, TConditions extends Record<string, (value: TValue) => boolean> = {}>(
   model: WritableSignal<TValue>,
@@ -15,45 +14,7 @@ type FormConfig<TValue, TConditions extends Record<string, (value: TValue) => bo
   conditions?: TConditions & Record<string, (value: TValue) => boolean>;
 };
 
-/**
- * Utility type that extracts string keys from conditions record
- * Used to ensure type safety when referencing conditions by their string identifiers
- */
 type ConditionKey<TConditions extends Record<string, unknown>> = Extract<keyof TConditions, string>;
-
-// Dummy function for mocking realistic API
-export function required<TValue, TPathKind extends PathKind = PathKind.Root>(
-  config?: BaseValidatorConfig<TValue, TPathKind> & {
-    when?: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
-  },
-) {
-  return (field: FieldPath<TValue, TPathKind>) => {
-    console.log('required validator called with:', field, config);
-  };
-}
-
-export function minLength<TValue, TPathKind extends PathKind = PathKind.Root>(
-  length: number,
-  config?: BaseValidatorConfig<TValue, TPathKind> & {
-    when?: NoInfer<LogicFn<TValue, boolean, TPathKind>>;
-  },
-) {
-  return (field: FieldPath<TValue, TPathKind>) => {
-    console.log('minLength validator called with:', field, length, config);
-  };
-}
-
-export function validateBuildingExists() {
-  return (field: FieldPath<string, PathKind.Root>) => {
-    console.log('validateBuildingExists validator called with:', field);
-  };
-}
-
-export function validateRoomExists() {
-  return (field: FieldPath<any, PathKind.Root>) => {
-    console.log('validateRoomExists validator called with:', field);
-  };
-}
 
 export function applyWhenValue<TConditionKey extends string = string>(
   predicateOrConditionKey: ((value: any) => boolean) | TConditionKey,
@@ -67,7 +28,6 @@ export function applyWhenValue<TConditionKey extends string = string>(
       validators,
     );
   };
-  // Brand the function with type information
   (fn as any).__applyWhenValue = {
     predicateOrConditionKey,
     validators,
@@ -75,7 +35,6 @@ export function applyWhenValue<TConditionKey extends string = string>(
   return fn as ApplyWhenValueFn<TConditionKey>;
 }
 
-// Branded type to carry condition key information
 type ApplyWhenValueFn<TConditionKey extends string> = ((
   field: FieldPath<any, PathKind.Root>,
 ) => unknown) & {

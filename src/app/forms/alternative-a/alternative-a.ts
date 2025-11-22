@@ -3,14 +3,14 @@ import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maint
 import { Field } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { ValidationErrors } from '../validation-errors/validation-errors';
+import { form } from './mock';
 import {
   applyWhenValue,
-  form,
   minLength,
   required,
   validateBuildingExists,
   validateRoomExists,
-} from './wrapper';
+} from '../mock';
 
 @Component({
   selector: 'app-proposed',
@@ -33,7 +33,7 @@ export class AlternativeA {
     - which field is targeted when using applyWhenValue is clear
 
 
-    ***Cons:**
+    ***Cons:*
     - readability can be hindered
       - may depend a little on the formatting
       - also depends on how nested fields can be accessed

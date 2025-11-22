@@ -3,14 +3,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrors } from '../validation-errors/validation-errors';
 import { Field } from '@angular/forms/signals';
 import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maintenance-request';
+import { form } from './mock';
 import {
   applyWhenValue,
-  form,
   minLength,
   required,
   validateBuildingExists,
   validateRoomExists,
-} from './wrapper';
+} from '../mock';
 
 @Component({
   selector: 'app-alternative-c',

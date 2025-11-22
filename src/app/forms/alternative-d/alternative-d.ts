@@ -1,13 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { initialMaintenanceRequest, MaintenanceRequest } from '../../model/maintenance-request';
-import {
-  applyWhenValue,
-  form,
-  minLength,
-  required,
-  validateBuildingExists,
-  validateRoomExists,
-} from './wrapper';
+import { applyWhenValue, form } from './mock';
+import { minLength, required, validateBuildingExists, validateRoomExists } from '../mock';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationErrors } from '../validation-errors/validation-errors';
 import { Field } from '@angular/forms/signals';
